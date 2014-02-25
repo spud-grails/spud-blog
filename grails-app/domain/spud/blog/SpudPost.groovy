@@ -6,7 +6,7 @@ class SpudPost {
 	def sharedSecurityService
 	def spudTemplateService
 
-	static transients = ['userDisplayName', cachedContent]
+	static transients = ['userDisplayName', 'cachedContent']
 
 	String title
 	String content //Set constraint to make it big
@@ -64,9 +64,11 @@ class SpudPost {
 		if(cachedContent) {
 			return cachedContent
 		}	
-		cachedContent = spudTemplateService.render("${post.urlName}",content,[model: [post:post]])
+		cachedContent = spudTemplateService.render("${this.urlName}",content,[model: [post:this]])
 	}
 
+    static publicNewsPosts = where { isNews == true && visible == true && publishedAt <= new Date() }
+    static publicBlogPosts = where { isNews == false && visible == true && publishedAt <= new Date() }
 
     static namedQueries = {
     	forSpudSite { currentSiteId -> 
@@ -77,16 +79,6 @@ class SpudPost {
     		eq('visible', true)
     		lte('publishedAt', new Date())
     		order('publishedAt','desc')
-    	}
-
-    	publicBlogPosts {
-    		eq('isNews', false)
-    		publicPosts()
-    	}
-
-    	publicNewsPosts {
-    		eq('isNews', true)
-    		publicPosts()
     	}
 
     	recentPosts { limit ->

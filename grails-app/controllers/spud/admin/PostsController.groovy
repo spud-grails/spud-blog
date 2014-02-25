@@ -23,7 +23,7 @@ class PostsController {
     }
 
     def create() {
-        def post = new SpudPost(isNews: news())
+        def post = new SpudPost(isNews: news(), publishedAt: new Date())
         render view: '/spud/admin/posts/create', model: [post: post]
     }
 

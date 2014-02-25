@@ -4,7 +4,7 @@ import  spud.security.*
 import  spud.blog.*
 
 
-@SpudApp(name="Blog Posts", thumbnail="spud/admin/posts_thumb.png", order="10")
+@SpudApp(name="Blog Posts", thumbnail="spud/admin/posts_thumb.png", order="10", enabled="spud.blog.blogEnabled")
 @SpudSecure(['BLOG'])
 class BlogPostsController extends PostsController {
 	static namespace = 'spud_admin'
