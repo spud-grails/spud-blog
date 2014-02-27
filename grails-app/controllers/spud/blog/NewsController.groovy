@@ -15,7 +15,7 @@ class NewsController {
 
 
     def show() {
-    	def post = SpudPost.publicNewsPosts.where{ urlName == params.id }.find()
+    	def post = SpudPost.where{ isNews == true && visible == true && publishedAt <= new Date() && urlName == params.id}.find()
     	def layout = grailsApplication.config.spud.blog.newsLayout ?: 'main'
     	if(!post) {
     		redirect action: 'index'
