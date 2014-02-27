@@ -31,7 +31,7 @@ class SpudBlogTagLib {
 
     	def contentLength = attrs.length?.toInteger() ?: 500
     	if(content.size() > contentLength) {
-    		return out << content.substring(contentLength)
+    		return out << content.substring(0,contentLength)
     	}
 
     	return  out << content
