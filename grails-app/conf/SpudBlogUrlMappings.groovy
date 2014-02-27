@@ -9,13 +9,17 @@ class SpudBlogUrlMappings {
 		def newsEnabled = spudBlogService.isNewsEnabled()
 		def blogEnabled = spudBlogService.isBlogEnabled()
 
+
 		if(blogEnabled) {
-			"/$blogMapping"(resources: 'blog')
+			println "BLOG IS ENABLED WTF?"
+			def BLOG_MAPPING = "/${blogMapping}"
+			invokeMethod(BLOG_MAPPING,[resources: 'blog'])
 	        "/spud/admin/blog-posts"(resources: 'blogPosts', namespace: 'spud_admin')
 		}
 
 		if(newsEnabled) {
-			"/$newsMapping"(resources: 'news')
+			def NEWS_MAPPING = "/${newsMapping}"
+			invokeMethod(NEWS_MAPPING,[resources: 'news'])
 			"/spud/admin/news-posts"(resources: 'newsPosts', namespace: 'spud_admin')	
 		}
 		

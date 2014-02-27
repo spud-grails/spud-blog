@@ -15,14 +15,14 @@ class BlogController {
 
 
     def show() {
-    	def post = SpudPost.publicBlogPosts.where { urlName == params.id }.find()
+    	def post = SpudPost.where { isNews == true && visible == true && publishedAt <= new Date() && urlName == params.id}.find()
     	def layout = grailsApplication.config.spud.blog.blogLayout ?: 'main'
     	if(!post) {
     		redirect action: 'index'
     		return
     	}
 
-    	render view: '/news/show', model: [post: post, layout: layout]
+    	render view: '/blog/show', model: [post: post, layout: layout]
 
     }
 
