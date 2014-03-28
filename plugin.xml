@@ -1,0 +1,19 @@
+<plugin name='spud-blog' version='0.1' grailsVersion='2.3.7 &gt; *'>
+  <author>Your name</author>
+  <title>Spud Blog Plugin</title>
+  <description>Brief summary/description of the plugin.
+</description>
+  <documentation>http://grails.org/plugin/spud-blog</documentation>
+  <type>SpudBlogGrailsPlugin</type>
+  <resources>
+    <resource>SpudBlogUrlMappings</resource>
+    <resource>spud.admin.BlogPostsController</resource>
+    <resource>spud.admin.NewsPostsController</resource>
+    <resource>spud.admin.PostsController</resource>
+    <resource>spud.blog.BlogController</resource>
+    <resource>spud.blog.NewsController</resource>
+    <resource>spud.blog.SpudPost</resource>
+    <resource>spud.blog.SpudBlogService</resource>
+    <resource>spud.blog.SpudBlogTagLib</resource>
+  </resources>
+</plugin>

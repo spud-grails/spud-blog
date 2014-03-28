@@ -38,10 +38,11 @@ grails.project.dependency.resolution = {
 
     plugins {
 
-        runtime ":spud-core:0.1.4"
+        // runtime ":spud-core:0.1.4"
         build(":release:3.0.1",
               ":rest-client-builder:1.0.3") {
             export = false
         }
     }
 }
+grails.plugin.location."spud-core" = "../spud-core"
