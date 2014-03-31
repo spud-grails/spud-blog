@@ -8,7 +8,7 @@ class NewsController {
     	def layout = grailsApplication.config.spud.blog.newsLayout ?: 'main'
     	def posts = SpudPost.publicNewsPosts
     	def postCount = posts.count()
-    	posts = posts.list([sort: 'publishedAt', direction: 'desc', max: postsPerPage] + params)
+    	posts = posts.list([sort: 'publishedAt', order: 'desc', max: postsPerPage] + params)
     	println posts
     	render view: '/news/index', model: [posts: posts, postCount: postCount, layout: layout]
     }

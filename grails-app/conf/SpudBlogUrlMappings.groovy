@@ -11,7 +11,6 @@ class SpudBlogUrlMappings {
 
 
 		if(blogEnabled) {
-			println "BLOG IS ENABLED WTF?"
 			def BLOG_MAPPING = "/${blogMapping}"
 			invokeMethod(BLOG_MAPPING,[resources: 'blog'])
 	        "/spud/admin/blog-posts"(resources: 'blogPosts', namespace: 'spud_admin')

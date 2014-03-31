@@ -7,7 +7,7 @@ class SpudBlogTagLib {
 
     def news = { attrs, body->
     	def limit = attrs.limit?.toInteger() ?: 5
-    	def posts = SpudPost.publicNewsPosts.list(max: limit, sort: 'publishedAt', direction: 'desc')
+    	def posts = SpudPost.publicNewsPosts.list(max: limit, sort: 'publishedAt', order: 'desc')
     	def var = attrs.var ?: "post"
 
     	posts.each { post ->
@@ -17,7 +17,7 @@ class SpudBlogTagLib {
     }
 
     def blog = { attrs, body ->
-		def posts = SpudPost.publicBlogPosts.list(max: limit, sort: 'publishedAt', direction: 'desc')
+		def posts = SpudPost.publicBlogPosts.list(max: limit, sort: 'publishedAt', order: 'desc')
 		def var = attrs.var ?: "post"
 
     	posts.each { post ->

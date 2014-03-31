@@ -14,7 +14,7 @@ class PostsController {
     def index() {
     	def posts = SpudPost.where{ isNews == news() }
     	def postCount = posts.count()
-    	posts = posts.list([sort: 'publishedAt', direction: 'desc', max: 25] + params)
+    	posts = posts.list([sort: 'publishedAt', order: 'desc', max: 25] + params)
     	render view: '/spud/admin/posts/index', model: [posts: posts, postCount: postCount ]
     }
 
