@@ -23,7 +23,7 @@ class SpudPost {
 	Long userId
 
 
-	@BindingFormat('yyyy-MM-dd HH:mm') 
+	@BindingFormat('yyyy-MM-dd HH:mm')
 	Date publishedAt
 	Date dateCreated
 	Date lastUpdated
@@ -33,6 +33,8 @@ class SpudPost {
 
 
     static mapping = {
+		def cfg = it?.getBean('grailsApplication')?.config
+        datasource(cfg?.spud?.core?.datasource ?: 'DEFAULT')
 		cache true
 		table 'spud_posts'
 		autoTimestamp true
@@ -63,7 +65,7 @@ class SpudPost {
     public String render() {
 		if(cachedContent) {
 			return cachedContent
-		}	
+		}
 		cachedContent = spudTemplateService.render("${this.urlName}",content,[model: [post:this]])
 	}
 
@@ -71,7 +73,7 @@ class SpudPost {
     static publicBlogPosts = where { isNews == false && visible == true && publishedAt <= new Date() }
 
     static namedQueries = {
-    	forSpudSite { currentSiteId -> 
+    	forSpudSite { currentSiteId ->
     		eq('siteId', currentSiteId)
     	}
 

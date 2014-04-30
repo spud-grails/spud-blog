@@ -29,7 +29,7 @@ grails.project.dependency.resolution = {
         grailsPlugins()
         mavenLocal()
         mavenCentral()
-        
+
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
@@ -38,11 +38,11 @@ grails.project.dependency.resolution = {
 
     plugins {
 
-        // runtime ":spud-core:0.1.4"
+        runtime ":spud-core:0.3.0"
         build(":release:3.0.1",
               ":rest-client-builder:1.0.3") {
             export = false
         }
     }
 }
-grails.plugin.location."spud-core" = "../spud-core"
+//grails.plugin.location."spud-core" = "../spud-core"
