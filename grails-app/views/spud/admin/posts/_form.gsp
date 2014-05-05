@@ -2,9 +2,9 @@
 	<div class="form-group">
 		<label for="post.title" style="display:none;">Name</label>
 		<div class="col-sm-12">
-			<g:textField name="post.title" class="full-width form-control" placeholder="Enter title here" value="${post?.title}" autofocus="true"/>	
+			<g:textField name="post.title" class="full-width form-control" placeholder="Enter title here" value="${post?.title}" autofocus="true"/>
 		</div>
-		
+
 	</div>
 </fieldset>
 <div class="control-group">
@@ -13,19 +13,24 @@
 	</div>
 </div>
 <div class="clearfix formtab">
-	<g:textArea name="post.content" class="spud-formatted-editor full-width" data-format="${post?.format}" value="${post?.content}" style="width:100%" data-content-css="${assetPath(src: 'spud/content.css')}"/>
+	<div class="form-group">
+		<div class="col-sm-2 col-sm-offset-10">
+			<spAdmin:formatterSelect name='post.format' value="${post?.format}" class="pull-right input-sm form-control" data-formatter="spud-post-editor"/>
+		</div>
+	</div>
+	<g:textArea name="post.content" id='spud-post-editor' class="spud-formatted-editor full-width" data-format="${post?.format}" value="${post?.content}" style="width:100%" data-content-css="${assetPath(src: 'spud/content.css')}"/>
 </div>
 
 <fieldset class="spud_post_form_fieldset">
 	<legend>Advanced</legend>
 		<div class="col-md-6">
-			<div class="form-horizontal">	
+			<div class="form-horizontal">
 					<h4>Meta Data</h4>
 
 					<div class="form-group">
 						<label for="post.publishedAt" class="control-label col-sm-4">Publish Date</label>
 						<div class="col-sm-8">
-							<g:textField name="post.publishedAt" value="${post?.publishedAt?.format('YYYY-MM-dd HH:mm')}" class="spud_form_date_picker form-control"/>	
+							<g:textField name="post.publishedAt" value="${post?.publishedAt?.format('YYYY-MM-dd HH:mm')}" class="spud_form_date_picker form-control"/>
 						</div>
 					</div>
 					<g:hiddenField name="post.userId" value="${post?.userId}"/>
@@ -44,7 +49,7 @@
 					<g:if test="${!post?.isNews}">
 						<div class="form-group">
 							<label for="post.commentsEnabled" class="control-label col-sm-4">Comments Enabled</label>
-							
+
 							<div class="col-sm-8">
 								<label class="radio-inline">
 
@@ -61,7 +66,7 @@
 						<label for="post.metaKeywords" class="control-label col-sm-4">Keywords</label>
 						<div class="col-sm-8">
 							<g:textField name="post.metaKeywords" value="${post?.metaKeywords}" class="form-control"/>
-						
+
 							<span class="help-block">A Comma seperated list of keywords for search engines. Keep it short (no more than 10 keywords)</span>
 						</div>
 					</div>
@@ -78,10 +83,10 @@
 		<div class="col-md-6">
 
 				<h4>Categories<a href='#' class='btn btn-xs btn-success pull-right'>Add Category</a></h4>
-				
+
 				<input type="hidden" name="spud_post[category_ids][]" value="" />
 				<ul class="spud_post_categories_form">
-					
+
 				</ul>
 		</div>
 

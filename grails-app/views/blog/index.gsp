@@ -4,8 +4,9 @@
         <meta name="layout" content="${layout ?: 'main'}">
     </head>
     <body data-page="blog/index">
+        <content tag="title">Blog</content>
         <g:each var="post" in="${posts}">
             <g:render template="/blog/post" model="[post: post]" />
         </g:each>
-    </body> 
+    </body>
 </html>
