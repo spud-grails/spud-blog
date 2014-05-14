@@ -11,21 +11,24 @@ class SpudBlogTagLib {
     	def var = attrs.var ?: "post"
 
     	posts.each { post ->
-    		out << body((var):post)
+            def bodyContent = body((var):post)
+    		out << bodyContent
     	}
 
     }
 
+
+
     def blog = { attrs, body ->
 		def posts = SpudPost.publicBlogPosts.list(max: limit, sort: 'publishedAt', order: 'desc')
 		def var = attrs.var ?: "post"
-
     	posts.each { post ->
     		out << body((var):post)
     	}
     }
 
     def truncateHtml = { attrs ->
+
     	def content = attrs.value ?: ''
     	content = content.replaceAll("<(.|\n)*?>", '')
 

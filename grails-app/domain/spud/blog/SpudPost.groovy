@@ -6,7 +6,7 @@ class SpudPost {
 	def sharedSecurityService
 	def spudTemplateService
 
-	static transients = ['userDisplayName', 'cachedContent']
+	static transients = ['userDisplayName', 'cachedContent', 'render']
 
 	String title
 	String content //Set constraint to make it big
@@ -67,6 +67,10 @@ class SpudPost {
 			return cachedContent
 		}
 		cachedContent = spudTemplateService.render("${this.urlName}",content,[model: [post:this]])
+	}
+
+	public String getRender() {
+		this.render()
 	}
 
     static publicNewsPosts = where { isNews == true && visible == true && publishedAt <= new Date() }
