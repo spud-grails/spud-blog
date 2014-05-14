@@ -6,6 +6,7 @@ import spud.permalinks.*
 // import grails.plugin.cache.Cacheable
 
 class SpudBlogService {
+	static transactional = false
 	def spudPermalinkService
 	def grailsApplication
 
@@ -29,10 +30,9 @@ class SpudBlogService {
 		def config = grailsApplication.config.spud.blog
 		return grailsApplication.config.spud.blog.containsKey('newsMapping') ? grailsApplication.config.spud.blog.newsMapping : 'news'
 	}
-	
+
 	def getBlogMapping() {
 		def config = grailsApplication.config.spud.blog
 		return grailsApplication.config.spud.blog.containsKey('blogMapping') ? grailsApplication.config.spud.blog.blogMapping : 'blog'
 	}
 }
-

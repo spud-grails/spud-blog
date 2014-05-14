@@ -5,6 +5,7 @@ import org.grails.databinding.BindingFormat
 class SpudPost {
 	def sharedSecurityService
 	def spudTemplateService
+	def grailsApplication
 
 	static transients = ['userDisplayName', 'cachedContent', 'render']
 
@@ -62,11 +63,28 @@ class SpudPost {
     	return name
     }
 
+	public void setContent(String _content) {
+		content = _content
+		this.contentProcessed = null
+	}
+
+	def beforeValidate() {
+		if(this.content && !this.contentProcessed) {
+			def formatter = grailsApplication.config.spud.formatters.find{ it.name == this.format}?.formatterClass
+			if(formatter) {
+				def formattedText = formatter.newInstance().compile(this.content)
+				contentProcessed = formattedText
+			} else {
+				contentProcessed = this.content
+			}
+		}
+	}
+
     public String render() {
 		if(cachedContent) {
 			return cachedContent
 		}
-		cachedContent = spudTemplateService.render("${this.urlName}",content,[model: [post:this]])
+		cachedContent = spudTemplateService.render("${this.urlName}",contentProcessed ?: content,[model: [post:this]])
 	}
 
 	public String getRender() {
