@@ -65,7 +65,7 @@ spud {
 Simply point your browser to the spud admin dashboard (i.e. `http://localhost:8080/myapp/spud/admin`),
 and you should see a Blog and/or News module on your dashboard (depending on which is enabled via config).
 
-For public viewing you can simply point your browser to the http://localhost:8080/myapp/blog or http://localhost:8080/myapp/news endpoint (default mappings).
+For public viewing you can simply point your browser to the `http://localhost:8080/myapp/blog` or `http://localhost:8080/myapp/news` endpoint (default mappings).
 
 ### Customizing Styling
 
@@ -73,7 +73,7 @@ It is fairly simple to customize the styling of your blog posts. Firstly, you ca
 There also exists gsp files in this plugins `views/blog/` and `views/news` folder.
 They each contain a `index.gsp`, and `show.gsp` file for viewing your blog posts. Simply copy these files into your specific application and customize to your hearts content.
 
-**NOTE:** Soon a gant script will be added such that you can simply run a grails command to get these templates copied into your app.
+**NOTE:** Soon a GANT script will be added such that you can simply run a grails command to get these templates copied into your app.
 
 ### Available TagLibs
 
@@ -112,7 +112,19 @@ Notice the use of another taglib here (`sp:truncateHtml`). This omits the html f
 
 Pretty straight forward right? The same usage can also be used with the `sp:blog` taglib. You can also change the name of the context variable `post` by specifying the `var=` attribute.
 
-### Additional Resources
+## Additional Resources
 
 * Write your blog posts with Markdown using [spud-markdown](http://github.com/spud-grails/spud-markdown)!
 * Drop into a content management system with [spud-cms](http://github.com/spud-grails/spud-cms)!
+
+
+## Things to Be Done
+
+There are several feature adds that remain to be finished which include
+
+* Spud Post Category Integration
+* Commenting and Comment Management
+* Caching
+* Comment Spam Protection
+* GANT Scripts for convenience
+* Custom Fields
