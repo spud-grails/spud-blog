@@ -4,7 +4,7 @@ import  spud.security.*
 import  spud.blog.*
 
 class PostsController {
-	
+
     def sitemapService
     def spudPageService
     def spudBlogService
@@ -47,14 +47,14 @@ class PostsController {
             flash.error = "Error Saving Post"
             render view: '/spud/admin/posts/create', model: [post: post]
         }
-        
+
     }
 
 
     def edit() {
         def post = loadPost()
         if(!post) {
-            return   
+            return
         }
         render view: '/spud/admin/posts/edit', model: [post: post]
     }
@@ -63,21 +63,17 @@ class PostsController {
     def update() {
         def post = loadPost()
         if(!post) {
-            return   
+            return
         }
-        println "Posts ${params.post} "
         bindData(post, params.post)
-        // post.properties += params.post
         post.isNews = news()
 
-        println("Properties ${post.visible}")
         if(post.save(flush:true)) {
             sitemapService.evictCache()
             spudPageService?.evictCache()
             redirect action: 'index', method: 'GET', namespace: 'spud_admin'
         } else {
-                        println post.errors
-
+            log.error post.errors
             flash.error = "Error Saving Post"
             render view: '/spud/admin/posts/edit', model: [post: post]
         }
@@ -87,7 +83,7 @@ class PostsController {
     def delete() {
         def post = loadPost()
         if(!post) {
-            return   
+            return
         }
         spudPageService?.evictCache()
         sitemapService.evictCache()

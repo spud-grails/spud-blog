@@ -20,12 +20,12 @@
         <tr >
           <td><spAdmin:link action="edit" id="${post.id}" title="Edit Post">${post.title}</spAdmin:link></td>
           <td style="width:125px;">${post.userDisplayName}</td>
-          <td style="width:140px;">${post.publishedAt?.format('MM/dd/YYYY hh:mm a')}</td>
-          
+          <td style="width:175px;">${post.publishedAt?.format('MM/dd/YYYY hh:mm a')}</td>
 
-          
+
+
           <td align="right" style="width:75px;">
-            <spAdmin:link action="delete" id="${post.id}" data-confirm="Are you sure you want to remove this post?" data-method="DELETE" method="DELETE" class="btn btn-danger">Remove</spAdmin:link>
+            <spAdmin:link action="delete" id="${post.id}" data-confirm="Are you sure you want to remove this post?" data-method="DELETE" method="DELETE" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></spAdmin:link>
           </td>
         </tr>
       </g:each>
@@ -41,6 +41,3 @@
 </content>
 
 </g:applyLayout>
-
-
-
