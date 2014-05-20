@@ -18,7 +18,7 @@ Add the `spud-blog` module to your grails app plugins
 
 ```groovy
 plugins {
-  compile ':spud-security:0.4.0' //Only needed if you dont have your own auth integrated with grails security-bridge
+  compile ':spud-security:0.4.2' //Only needed if you dont have your own auth integrated with grails security-bridge
   compile ':spud-blog:0.4.0'
 }
 ```
