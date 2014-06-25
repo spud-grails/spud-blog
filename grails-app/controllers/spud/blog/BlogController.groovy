@@ -7,7 +7,7 @@ class BlogController {
     def index() {
     	def postsPerPage = grailsApplication.config.spud.blog.postsPerPage ?: 25
     	def layout = grailsApplication.config.spud.blog.blogLayout ?: 'main'
-    	def posts = SpudPost.where { isNews == false && visible == true && publishedAt <= new Date() }
+    	def posts = SpudPost.publicBlogPosts()
     	def postCount = posts.count()
 		withFormat {
 			html {

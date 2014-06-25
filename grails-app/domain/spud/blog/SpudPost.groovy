@@ -91,8 +91,8 @@ class SpudPost {
 		this.render()
 	}
 
-    static publicNewsPosts = where { isNews == true && visible == true && publishedAt <= new Date() }
-    static publicBlogPosts = where { isNews == false && visible == true && publishedAt <= new Date() }
+    static publicNewsPosts = { where { isNews == true && visible == true && publishedAt <= new Date() } }
+    static publicBlogPosts = { where { isNews == false && visible == true && publishedAt <= new Date() } }
 
     static namedQueries = {
     	forSpudSite { currentSiteId ->

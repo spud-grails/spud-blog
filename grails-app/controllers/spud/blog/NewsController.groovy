@@ -6,7 +6,7 @@ class NewsController {
     def index() {
     	def postsPerPage = grailsApplication.config.spud.blog.postsPerPage ?: 25
     	def layout = grailsApplication.config.spud.blog.newsLayout ?: 'main'
-    	def posts = SpudPost.where { isNews == true && visible == true && publishedAt <= new Date() }
+    	def posts = SpudPost.publicNewsPosts()
     	def postCount = posts.count()
 
 		withFormat {
