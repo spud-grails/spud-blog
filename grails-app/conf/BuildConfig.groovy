@@ -40,6 +40,10 @@ grails.project.dependency.resolution = {
 
         runtime ":spud-core:0.5.0"
         runtime ":feeds:1.6"
+
+        runtime(':hibernate:3.6.10.13') {
+            export = false
+        }
         build(":release:3.0.1",
               ":rest-client-builder:1.0.3") {
             export = false
