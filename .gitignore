@@ -1,3 +1,5 @@
 /target
 *.zip
 .DS_Store
+plugin.xml
+web-app/WEB_INF/

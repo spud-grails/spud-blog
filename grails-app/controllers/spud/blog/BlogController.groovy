@@ -17,7 +17,7 @@ class BlogController {
 			}
 			rss {
 				render(feedType:"rss", feedVersion:"2.0") {
-					title grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.blogName ?: 'Spud Blog'
+					title = grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.blogName ?: 'Spud Blog'
 
 					link = g.link(controller:'blog',action:'index',absolute:true)
 
