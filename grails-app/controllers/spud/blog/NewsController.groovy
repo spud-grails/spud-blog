@@ -1,5 +1,7 @@
 package spud.blog
 
+import grails.converters.*
+
 class NewsController {
 	def grailsApplication
 	static responseFormats = ['html','rss','atom']
@@ -30,7 +32,8 @@ class NewsController {
 					}
 				}
 
-			} atom {
+			}
+			atom {
 				render(feedType:"atom") {
 					title = grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.newsName ?: 'Spud News'
 					link = g.link(controller:'blog',action:'index',absolute:true)
@@ -44,6 +47,14 @@ class NewsController {
 					}
 				}
 			}
+			json {
+				posts = posts.list([sort: 'publishedAt', order: 'desc', max: postsPerPage] + params)
+				render [posts: posts, postCount: postCount] as JSON
+			}
+			xml {
+				posts = posts.list([sort: 'publishedAt', order: 'desc', max: postsPerPage] + params)
+				render [posts: posts, postCount: postCount] as XML
+			}
 		}
     }
 
@@ -56,7 +67,18 @@ class NewsController {
     		return
     	}
 
-    	render view: '/news/show', model: [post: post, layout: layout]
+		withFormat {
+			json {
+				render post as JSON
+			}
+			xml {
+				render post as XML
+			}
+			html {
+				render view: '/news/show', model: [post: post, layout: layout]
+			}
+		}
+
 
     }
 
