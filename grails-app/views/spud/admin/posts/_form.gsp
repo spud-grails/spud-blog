@@ -35,6 +35,19 @@
 					</div>
 					<g:hiddenField name="post.userId" value="${post?.userId}"/>
 
+
+						<div class="form-group">
+							<label for="sites" class="control-label col-sm-4">Websites to Publish</label>
+
+							<div class="spud_post_form_input_group col-sm-8">
+								<spAdmin:availableSites>
+									<g:checkBox name="sites" value="${site.siteId}" checked="${post?.id ? post.sites.collect{it.spudSiteId}.contains(site.siteId) : siteActive}"/>
+									<label>${site.name}</label>
+								</spAdmin:availableSites>
+							</div>
+						</div>
+
+
 					<div class="form-group">
 						<label for="post.visible" class="control-label col-sm-4">Visible</label>
 						<div class="col-sm-8">

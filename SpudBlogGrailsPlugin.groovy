@@ -32,7 +32,7 @@ class SpudBlogGrailsPlugin {
             output.content         = it.render()
             output.publishedAt     = it.publishedAt
             output.dateCreated     = it.dateCreated
-            output.lastUpdated     = it.lastUpdates
+            output.lastUpdated     = it.lastUpdated
             output.userId          = it.userId
             output.userDisplayName = it.userDisplayName
 

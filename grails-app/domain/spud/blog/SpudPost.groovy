@@ -8,9 +8,10 @@ class SpudPost {
 	def grailsApplication
 
 	static transients = ['userDisplayName', 'cachedContent', 'render']
+	static hasMany = [sites: SpudPostSite]
 
 	String title
-	String content //Set constraint to make it big
+	String content
 	String contentProcessed
 	String format='html'
 	Boolean commentsEnabled = false
@@ -45,6 +46,7 @@ class SpudPost {
 		dateCreated column: 'created_at'
 		lastUpdated column: 'updated_at'
 		userId column: 'spud_user_id'
+		sites cascade: "all-delete-orphan" 
     }
 
     static constraints = {
