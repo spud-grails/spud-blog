@@ -49,6 +49,8 @@ class PostsController {
 		post.isNews = news()
 		post.userId = sharedSecurityService.getUserIdentity()
 		spudBlogService.generateUrlName(post)
+		def sites = params.list('sites')
+
 		if(!sites) {
 			sites << spudMultiSiteService.activeSite.siteId
 		}
