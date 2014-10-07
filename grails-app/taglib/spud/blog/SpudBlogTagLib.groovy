@@ -9,7 +9,7 @@ class SpudBlogTagLib {
 	def news = { attrs, body->
 		def siteId = request.getAttribute('spudSiteId')
 		def postQuery = "from SpudPost p WHERE p.isNews = true AND visible=true AND publishedAt <= :today AND EXISTS ( FROM SpudPostSite s Where s.post = p AND s.spudSiteId = :siteId) ORDER BY publishedAt desc"
-		def posts = SpudPost.findAll(postQuery,[today: new Date(),siteId: siteId],[max:(limit ?: 5)])
+		def posts = SpudPost.findAll(postQuery,[today: new Date(),siteId: siteId],[max:(attrs.limit ?: 5)])
 		def var = attrs.var ?: "post"
 
 		posts.each { post ->
@@ -24,7 +24,7 @@ class SpudBlogTagLib {
 	def blog = { attrs, body ->
 		def siteId = request.getAttribute('spudSiteId')
 		def postQuery = "from SpudPost p WHERE p.isNews = false AND visible=true AND publishedAt <= :today AND EXISTS ( FROM SpudPostSite s Where s.post = p AND s.spudSiteId = :siteId) ORDER BY publishedAt desc"
-		def posts = SpudPost.findAll(postQuery,[today: new Date(),siteId: siteId],[max:(limit ?: 5)])
+		def posts = SpudPost.findAll(postQuery,[today: new Date(),siteId: siteId],[max:(attrs.limit ?: 5)])
 		def var = attrs.var ?: "post"
 		posts.each { post ->
 			out << body((var):post)
