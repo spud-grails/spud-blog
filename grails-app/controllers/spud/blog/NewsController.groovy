@@ -60,7 +60,7 @@ class NewsController {
 			}
 			json {
 				def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today], [max:postsPerPage] + params)
-				render([posts: posts, postCount: postCount] as JSON)
+				render posts as JSON //([posts: posts, postCount: postCount] as JSON)
 			}
 			xml {
 				def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today], [max:postsPerPage] + params)
