@@ -17,6 +17,7 @@ class PostsController {
 		def siteIds = spudMultiSiteService.availableSites().collect { it.siteId }
         def posts
         def postCount
+		log.debug "Checking Active Site ${spudMultiSiteService.activeSite.siteId}"
         if(spudMultiSiteService.activeSite.siteId == 0) {
             postCount = SpudPost.executeQuery("select count(p) from SpudPost p WHERE p.isNews = :isNews AND ( NOT EXISTS ( FROM SpudPostSite s WHERE s.post = p) OR EXISTS ( FROM SpudPostSite s Where s.post = p AND s.spudSiteId = :siteId))",[isNews: news(), siteId: spudMultiSiteService.activeSite.siteId])[0]
             posts = SpudPost.findAll("from SpudPost p WHERE p.isNews = :isNews AND ( NOT EXISTS ( FROM SpudPostSite s WHERE s.post = p) OR EXISTS ( FROM SpudPostSite s Where s.post = p AND s.spudSiteId = :siteId)) ORDER BY publishedAt desc",[isNews: news(), siteId: spudMultiSiteService.activeSite.siteId],[max:25] + params)
@@ -34,7 +35,7 @@ class PostsController {
 	}
 
 	def create() {
-		def post = new SpudPost(isNews: news(), publishedAt: new Date())
+		def post = new SpudPost(isNews: news(), publishedAt: new Date(), userId: sharedSecurityService.getUserIdentity())
 		render view: '/spud/admin/posts/create', model: [post: post]
 	}
 
