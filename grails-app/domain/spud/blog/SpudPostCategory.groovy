@@ -18,4 +18,18 @@ class SpudPostCategory {
 		urlName nullable:false
 		parent nullable:true
 	}
+
+	def grailsCacheAdminService
+	
+	def afterInsert() {
+		grailsCacheAdminService.clearAllCaches()
+	}
+
+	def afterUpdate() {
+		grailsCacheAdminService.clearAllCaches()
+	}
+
+	def afterDelete() {
+		grailsCacheAdminService.clearAllCaches()
+	}
 }

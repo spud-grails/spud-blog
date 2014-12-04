@@ -7,7 +7,7 @@ class SpudPost {
 	def spudTemplateService
 	def grailsApplication
 
-	static transients = ['userDisplayName', 'cachedContent', 'render']
+	static transients = ['userDisplayName', 'cachedContent', 'render', 'postContent']
 	static hasMany = [sites: SpudPostSite]
 
 	String title
@@ -65,9 +65,13 @@ class SpudPost {
     	return name
     }
 
-	public void setContent(String _content) {
+	public void setPostContent(String _content) {
 		content = _content
-		this.contentProcessed = null
+		contentProcessed = null
+	}
+
+	public String getPostContent() {
+		return content
 	}
 
 	def beforeValidate() {
@@ -125,4 +129,18 @@ class SpudPost {
 
 
     }
+
+	def grailsCacheAdminService
+	
+	def afterInsert() {
+		grailsCacheAdminService.clearAllCaches()
+	}
+
+	def afterUpdate() {
+		grailsCacheAdminService.clearAllCaches()
+	}
+
+	def afterDelete() {
+		grailsCacheAdminService.clearAllCaches()
+	}
 }

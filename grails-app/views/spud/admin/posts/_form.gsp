@@ -18,7 +18,7 @@
 			<spAdmin:formatterSelect name='post.format' value="${post?.format}" class="pull-right input-sm form-control" data-formatter="spud-post-editor"/>
 		</div>
 	</div>
-	<g:textArea name="post.content" id='spud-post-editor' class="spud-formatted-editor full-width" data-format="${post?.format}" value="${post?.content}" style="width:100%" data-content-css="${assetPath(src: 'spud/content.css')}"/>
+	<g:textArea name="post.postContent" id='spud-post-editor' class="spud-formatted-editor full-width" data-format="${post?.format}" value="${post?.postContent}" style="width:100%" data-content-css="${assetPath(src: 'spud/content.css')}"/>
 </div>
 
 <fieldset class="spud_post_form_fieldset">
