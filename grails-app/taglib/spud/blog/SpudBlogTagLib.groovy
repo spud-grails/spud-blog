@@ -45,7 +45,7 @@ class SpudBlogTagLib {
 	def truncateHtml = { attrs ->
 
 		def content = attrs.value ?: ''
-		content = content.replaceAll("<(.|\n)*?>", '')
+		content = content.decodeHTML().replaceAll("<(.|\n)*?>", '')
 
 		def contentLength = attrs.length?.toInteger() ?: 500
 		if(content.size() > contentLength) {
