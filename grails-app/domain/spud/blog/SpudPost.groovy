@@ -7,7 +7,7 @@ class SpudPost {
 	def spudTemplateService
 	def grailsApplication
 
-	static transients = ['userDisplayName', 'cachedContent', 'render', 'postContent']
+	static transients = ['user', 'userDisplayName', 'cachedContent', 'render', 'postContent']
 	static hasMany = [sites: SpudPostSite]
 
 	String title
@@ -63,6 +63,14 @@ class SpudPost {
     		name = user.toString()
     	}
     	return name
+    }
+
+    def getUser() {
+    	def output
+    	sharedSecurityService.withUser(userId) { user, account ->
+    		output = user
+    	}
+    	return output
     }
 
 	public void setPostContent(String _content) {
