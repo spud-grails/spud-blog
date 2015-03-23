@@ -30,6 +30,8 @@ class SpudPost {
 	Date dateCreated
 	Date lastUpdated
 
+	Map customFields
+
 	// Transients
 	String cachedContent
 
@@ -55,6 +57,7 @@ class SpudPost {
     	contentProcessed nullable: true
     	metaKeywords nullable: true
     	metaDescription nullable: true
+    	customFields nullable:true
     }
 
     String getUserDisplayName() {

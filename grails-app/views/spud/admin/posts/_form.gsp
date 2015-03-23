@@ -21,6 +21,13 @@
 	<g:textArea name="post.postContent" id='spud-post-editor' class="spud-formatted-editor full-width" data-format="${post?.format}" value="${post?.postContent}" style="width:100%" data-content-css="${assetPath(src: 'spud/content.css')}"/>
 </div>
 
+<spAdmin:hasCustomFields type="${post.isNews ? 'newsPost' : 'blogPost'}">
+	<fieldset>
+		<legend>Custom Fields</legend>
+		<spAdmin:customFieldSet type="${post.isNews ? 'newsPost' : 'blogPost'}" objectType="post" objectField="customFields" object="${post}"/>
+	</fieldset>
+</spAdmin:hasCustomFields>
+
 <fieldset class="spud_post_form_fieldset">
 	<legend>Advanced</legend>
 		<div class="col-md-6">

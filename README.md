@@ -112,6 +112,25 @@ Notice the use of another taglib here (`sp:truncateHtml`). This omits the html f
 
 Pretty straight forward right? The same usage can also be used with the `sp:blog` taglib. You can also change the name of the context variable `post` by specifying the `var=` attribute.
 
+## Custom Fields
+
+Custom meta fields can be defined for reference or for layouts when rendering news and blog posts. These can be configured via the `Config.groovy` file:
+
+```groovy
+spud {
+	customFieldSets {
+      newsPost {
+        featureText = [label: 'Feature Text', type: 'string']
+      }
+      blogPost {
+        featureText = [label: 'Feature Text', type: 'string']
+        featureDescription = [label: 'Feature Text', type: 'text']
+      }
+    }
+}
+```
+
+
 ## Additional Resources
 
 * Write your blog posts with Markdown using [spud-markdown](http://github.com/spud-grails/spud-markdown)!
@@ -122,9 +141,6 @@ Pretty straight forward right? The same usage can also be used with the `sp:blog
 
 There are several feature adds that remain to be finished which include
 
-* Spud Post Category Integration
 * Commenting and Comment Management
-* Caching
 * Comment Spam Protection
 * GANT Scripts for convenience
-* Custom Fields
