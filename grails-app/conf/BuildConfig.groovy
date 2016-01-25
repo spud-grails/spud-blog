@@ -40,7 +40,7 @@ grails.project.dependency.resolution = {
 
         if(System.getProperty('plugin.mode') != 'local') {
             runtime ":spud-core:0.7.0"
-            runtime(':hibernate:3.6.10.13') {
+            runtime(':hibernate:3.6.10.19') {
                 export = false
             }
             build(":release:3.0.1",

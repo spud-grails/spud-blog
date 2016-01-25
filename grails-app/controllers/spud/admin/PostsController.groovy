@@ -87,6 +87,7 @@ class PostsController {
 		}
 		bindData(post, params.post)
 		post.isNews = news()
+		spudBlogService.generateUrlName(post)
 		def sites = params.list('sites') ?: []
 		post.sites.clear()
 		if(!sites) {
