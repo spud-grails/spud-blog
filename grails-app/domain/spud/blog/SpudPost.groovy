@@ -21,6 +21,7 @@ class SpudPost {
 	String urlName
 	String metaKeywords
 	String metaDescription
+	String metaImage
 	Integer commentsCount = 0
 	Long userId
 
@@ -57,6 +58,7 @@ class SpudPost {
     	contentProcessed nullable: true
     	metaKeywords nullable: true
     	metaDescription nullable: true
+		metaImage nullable: true
     	customFields nullable:true
     }
 
