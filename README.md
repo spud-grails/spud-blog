@@ -33,8 +33,8 @@ spud {
 	blog {
 		blogEnabled = true
 		newsEnabled = false
-		blogMapping = '/blog'
-		newsMapping = '/news'
+		blogMapping = 'blog'
+		newsMapping = 'news'
 		newsLayout = 'main' //Base Layout to use
 		blogLayout = 'main' //Base Layout to use
 		blogName = 'Spud Blog' //Used for rss and atom feed meta

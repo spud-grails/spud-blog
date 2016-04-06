@@ -98,6 +98,14 @@
 							<span class="help-block">A short description of the article. This is what appears on a search engines search result page.</span>
 						</div>
 					</div>
+
+					<div class="form-group">
+						<label for="post.metaImage" class="control-label col-sm-4">Image</label>
+						<div class="col-sm-8">
+							<g:textField name="post.metaImage" value="${post?.metaImage}" class="form-control"/>
+							<span class="help-block">Place an image url here. This field can be used for meta tag 'og:image'. To use, apply to the meta image content as ${'$'}{post.metaImage}.</span>
+						</div>
+					</div>
 			</div>
 		</div>
 		<div class="col-md-6">
