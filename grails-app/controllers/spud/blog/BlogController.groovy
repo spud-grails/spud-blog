@@ -37,7 +37,7 @@ class BlogController {
 					def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today])
 					posts.each { post ->
 						entry(post.title) {
-							link = g.link(controller:'blog',action:'show', id: post.urlName,absolute:true)
+							link = g.createLink(controller:'blog',action:'show', id: post.urlName,absolute:true)
 							post.contentProcessed
 						}
 					}
@@ -53,7 +53,7 @@ class BlogController {
 
 					posts.each { post ->
 						entry(post.title) {
-							link = g.link(controller:'blog',action:'show', id: post.urlName,absolute:true)
+							link = g.createLink(controller:'blog',action:'show', id: post.urlName,absolute:true)
 							post.contentProcessed
 						}
 					}
