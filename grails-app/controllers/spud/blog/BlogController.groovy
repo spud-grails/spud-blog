@@ -31,7 +31,7 @@ class BlogController {
 				render(feedType:"rss", feedVersion:"2.0") {
 					title = grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.blogName ?: 'Spud Blog'
 
-					link = g.link(controller:'blog',action:'index',absolute:true)
+					link = g.createLink(controller:'blog',action:'index',absolute:true)
 
 					description = grailsApplication.config.spud.blog.blogDescription ?: 'Spud blog Description'
 					def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today])
@@ -47,7 +47,7 @@ class BlogController {
 			atom {
 				render(feedType:"atom") {
 					title = grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.blogName ?: 'Spud Blog'
-					link = g.link(controller:'blog',action:'index',absolute:true)
+					link = g.createLink(controller:'blog',action:'index',absolute:true)
 					description = grailsApplication.config.spud.blog.blogDescription ?: 'Spud blog Description'
 					def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today])
 
