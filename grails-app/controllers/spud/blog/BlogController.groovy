@@ -76,7 +76,7 @@ class BlogController {
     	def post = SpudPost.where { isNews == false && visible == true && publishedAt <= new Date() && urlName == params.id}.find()
     	def layout = grailsApplication.config.spud.blog.blogLayout ?: 'main'
     	if(!post) {
-    		redirect action: 'index'
+			response.sendError(404)
     		return
     	}
 		withFormat {
