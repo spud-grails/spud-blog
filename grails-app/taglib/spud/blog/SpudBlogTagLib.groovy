@@ -1,5 +1,7 @@
 package spud.blog
 
+import java.text.BreakIterator
+
 class SpudBlogTagLib {
 	static defaultEncodeAs = 'html'
 	static namespace = 'sp'
@@ -25,7 +27,6 @@ class SpudBlogTagLib {
 	}
 
 
-
 	def blog = { attrs, body ->
 		def siteId = request.getAttribute('spudSiteId')
 		def postQuery
@@ -49,7 +50,12 @@ class SpudBlogTagLib {
 
 		def contentLength = attrs.length?.toInteger() ?: 500
 		if(content.size() > contentLength) {
-			out << content.substring(0,contentLength)
+			BreakIterator bi = BreakIterator.getWordInstance()
+			bi.setText(content);
+			def first_after = bi.following(contentLength)
+
+			// to truncate:
+			out << content.substring(0, first_after) + "..."
 			// works like an "if" tag with test = is content too long
 			def bodyContent = body(size: content.size())
 			out << bodyContent
