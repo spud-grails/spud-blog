@@ -30,12 +30,24 @@
 
 <fieldset class="spud_post_form_fieldset">
 	<legend>Advanced</legend>
-		<div class="col-md-6">
+		<div class="col-sm-12">
 			<div class="form-horizontal">
 					<h4>Meta Data</h4>
+					<div class="form-group">
+						<label for="post.urlName" class="control-label col-sm-2">Perma Link</label>
+						<div class="col-sm-8">
+							<g:textField name="post.urlName" value="${post?.urlName}" title="" size="100" id="spud_page_url_name" class="form-control" disabled="${post?.useCustomUrlName ? null : true}"/>
+							<div class="checkbox">
+								<label >
+									<g:checkBox name="post.useCustomUrlName" onchange="\$('#spud_page_url_name').attr('disabled',!this.checked);" checked="${post?.useCustomUrlName}"/>
+									Customize this pages url
+								</label>
+							</div>
+						</div>
+					</div>
 
 					<div class="form-group">
-						<label for="post.publishedAt" class="control-label col-sm-4">Publish Date</label>
+						<label for="post.publishedAt" class="control-label col-sm-2">Publish Date</label>
 						<div class="col-sm-8">
 							<g:textField name="post.publishedAt" value="${post?.publishedAt?.format('YYYY-MM-dd HH:mm')}" class="spud_form_date_picker form-control"/>
 						</div>
@@ -44,7 +56,7 @@
 
 
 						<div class="form-group">
-							<label for="sites" class="control-label col-sm-4">Websites to Publish</label>
+							<label for="sites" class="control-label col-sm-2">Websites to Publish</label>
 
 							<div class="spud_post_form_input_group col-sm-8">
 								<spAdmin:availableSites>
@@ -56,7 +68,7 @@
 
 
 					<div class="form-group">
-						<label for="post.visible" class="control-label col-sm-4">Visible</label>
+						<label for="post.visible" class="control-label col-sm-2">Visible</label>
 						<div class="col-sm-8">
 						<label class="radio-inline">
 							<g:radio name="post.visible" value="${true}" checked="${post?.visible}"/> Yes
@@ -68,7 +80,7 @@
 					</div>
 					<g:if test="${!post?.isNews}">
 						<div class="form-group">
-							<label for="post.commentsEnabled" class="control-label col-sm-4">Comments Enabled</label>
+							<label for="post.commentsEnabled" class="control-label col-sm-2">Comments Enabled</label>
 
 							<div class="col-sm-8">
 								<label class="radio-inline">
@@ -83,7 +95,7 @@
 					</g:if>
 
 					<div class="form-group">
-						<label for="post.metaKeywords" class="control-label col-sm-4">Keywords</label>
+						<label for="post.metaKeywords" class="control-label col-sm-2">Keywords</label>
 						<div class="col-sm-8">
 							<g:textField name="post.metaKeywords" value="${post?.metaKeywords}" class="form-control"/>
 
@@ -92,7 +104,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="post.metaDescription" class="control-label col-sm-4">Description</label>
+						<label for="post.metaDescription" class="control-label col-sm-2">Description</label>
 						<div class="col-sm-8">
 							<g:textField name="post.metaDescription" value="${post?.metaDescription}" class="form-control"/>
 							<span class="help-block">A short description of the article. This is what appears on a search engines search result page.</span>
@@ -100,7 +112,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="post.metaImage" class="control-label col-sm-4">Image</label>
+						<label for="post.metaImage" class="control-label col-sm-2">Image</label>
 						<div class="col-sm-8">
 							<g:textField name="post.metaImage" value="${post?.metaImage}" class="form-control"/>
 							<span class="help-block">Place an image url here. This field can be used for meta tag 'og:image'. To use, apply to the meta image content as ${'$'}{post.metaImage}.</span>
@@ -108,7 +120,7 @@
 					</div>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-smd-12">
 
 				<h4>Categories<a href='#' class='btn btn-xs btn-success pull-right'>Add Category</a></h4>
 

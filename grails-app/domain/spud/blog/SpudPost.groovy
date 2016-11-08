@@ -19,6 +19,8 @@ class SpudPost {
 	Boolean isNews = false
 
 	String urlName
+  Boolean useCustomUrlName = false
+  
 	String metaKeywords
 	String metaDescription
 	String metaImage
