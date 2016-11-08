@@ -115,7 +115,7 @@ class PostsController {
 		}
 		spudPageService?.evictCache()
 		sitemapService.evictCache()
-		post.delete()
+		post.delete(flush: true)
 		redirect action: 'index', method: 'GET', namespace: 'spud_admin'
 	}
 
