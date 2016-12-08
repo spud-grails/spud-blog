@@ -18,7 +18,7 @@
       <g:each var="post" in="${posts}">
 
         <tr >
-          <td><spAdmin:link action="edit" id="${post.id}" title="Edit Post">${post.title}</spAdmin:link></td>
+          <td><spAdmin:link action="edit" id="${post.id}" title="Edit Post">${post.title}</spAdmin:link> ${!post.visible ? '(unpublished)' : ''}</td>
           <td style="width:125px;">${post.userDisplayName}</td>
           <td style="width:175px;">${post.publishedAt?.format('MM/dd/YYYY hh:mm a')}</td>
 
