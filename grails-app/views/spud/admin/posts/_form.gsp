@@ -22,7 +22,7 @@
 </div>
 
 <spAdmin:hasCustomFields type="${post.isNews ? 'newsPost' : 'blogPost'}">
-	<fieldset>
+  <fieldset class="custom-fields">
 		<legend>Custom Fields</legend>
 		<spAdmin:customFieldSet type="${post.isNews ? 'newsPost' : 'blogPost'}" objectType="post" objectField="customFields" object="${post}"/>
 	</fieldset>
@@ -40,11 +40,17 @@
 							<g:textField name="post.publishedAt" value="${post?.publishedAt?.format('YYYY-MM-dd HH:mm')}" class="spud_form_date_picker form-control"/>
 						</div>
 					</div>
-					<g:hiddenField name="post.userId" value="${post?.userId}"/>
+					%{-- <g:hiddenField name="post.userId" value="${post?.userId}"/> --}%
 
+          <div class="form-group">
+            <label for="post.urlName" class="control-label col-sm-2">Author</label>
+            <div class="col-sm-8">
+              <g:select class="form-control" name="post.userId" from="${users.asList()}" value="${post?.userId}" optionKey="id" />
+            </div>
+          </div>
 
 						<div class="form-group">
-							<label for="sites" class="control-label col-sm-4">Websites to Publish</label>
+							<label for="sites" class="control-label col-sm-2">Websites to Publish</label>
 
 							<div class="spud_post_form_input_group col-sm-8">
 								<spAdmin:availableSites>

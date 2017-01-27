@@ -36,7 +36,9 @@ class PostsController {
 
 	def create() {
 		def post = new SpudPost(isNews: news(), publishedAt: new Date(), userId: sharedSecurityService.getUserIdentity())
-		render view: '/spud/admin/posts/create', model: [post: post]
+		def users = getSuperAdminUsers()
+
+		render view: '/spud/admin/posts/create', model: [post: post, users: users]
 	}
 
 
@@ -48,7 +50,7 @@ class PostsController {
 		}
 		def post = new SpudPost(params.post)
 		post.isNews = news()
-		post.userId = sharedSecurityService.getUserIdentity()
+		// post.userId = sharedSecurityService.getUserIdentity()
 		spudBlogService.generateUrlName(post)
 		def sites = params.list('sites') ?: []
 
@@ -76,7 +78,10 @@ class PostsController {
 		if(!post) {
 			return
 		}
-		render view: '/spud/admin/posts/edit', model: [post: post]
+
+    def users = getSuperAdminUsers()
+
+		render view: '/spud/admin/posts/edit', model: [post: post, users: users]
 	}
 
 
@@ -118,6 +123,10 @@ class PostsController {
 		post.delete()
 		redirect action: 'index', method: 'GET', namespace: 'spud_admin'
 	}
+
+  protected getSuperAdminUsers(){
+    return SpudUser.findAllBySuperAdmin(true);
+  }
 
 	protected loadPost() {
 		if(!params.id) {
