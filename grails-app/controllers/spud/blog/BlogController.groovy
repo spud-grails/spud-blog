@@ -38,7 +38,7 @@ class BlogController {
 					posts.each { post ->
 						entry(post.title) {
 							link = g.createLink(controller:'blog',action:'show', id: post.urlName,absolute:true)
-							post.contentProcessed
+							cleanHtml(post.contentProcessed, 'basicWithImages')
 						}
 					}
 				}
