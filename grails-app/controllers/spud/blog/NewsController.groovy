@@ -31,14 +31,14 @@ class NewsController {
 			rss {
 				render(feedType:"rss", feedVersion:"2.0") {
 					title = grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.newsName ?: 'Spud News'
-					link = g.link(controller:'blog',action:'index',absolute:true)
+					link = g.createLink(controller:'news',action:'index',absolute:true)
 
 					description = grailsApplication.config.spud.blog.newsDescription ?: 'Spud News Description'
 					def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today])
 					posts.each { post ->
 						entry(post.title) {
-							link = g.link(controller:'blog',action:'show', id: post.urlName,absolute:true)
-							post.contentProcessed
+							link = g.createLink(controller:'news',action:'show', id: post.urlName,absolute:true)
+							cleanHtml(post.contentProcessed, 'basicWithImages')
 						}
 					}
 				}
@@ -47,12 +47,12 @@ class NewsController {
 			atom {
 				render(feedType:"atom") {
 					title = grailsApplication.config.spud.siteName ?: grailsApplication.config.spud.blog.newsName ?: 'Spud News'
-					link = g.link(controller:'blog',action:'index',absolute:true)
+					link = g.createLink(controller:'news',action:'index',absolute:true)
 					description = grailsApplication.config.spud.blog.newsDescription ?: 'Spud News Description'
 					def posts = SpudPost.findAll(postQuery,[siteId:siteId, today:today])
 					posts.each { post ->
 						entry(post.title) {
-							link = g.link(controller:'blog',action:'show', id: post.urlName,absolute:true)
+							link = g.createLink(controller:'news',action:'show', id: post.urlName,absolute:true)
 							post.contentProcessed
 						}
 					}
