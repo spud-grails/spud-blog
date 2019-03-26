@@ -19,7 +19,7 @@
 
         <tr >
           <td><spAdmin:link action="edit" id="${post.id}" title="Edit Post">${post.title}</spAdmin:link></td>
-          <td style="width:125px;">${post.userDisplayName}</td>
+          <td style="width:125px;">${post.author ?: post.userDisplayName}</td>
           <td style="width:175px;">${post.publishedAt?.format('MM/dd/YYYY hh:mm a')}</td>
 
 

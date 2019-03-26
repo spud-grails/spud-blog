@@ -10,6 +10,7 @@ class SpudPost {
 	static transients = ['user', 'userDisplayName', 'cachedContent', 'render', 'postContent']
 	static hasMany = [sites: SpudPostSite]
 
+	String author
 	String title
 	String content
 	String contentProcessed
@@ -53,6 +54,7 @@ class SpudPost {
     }
 
     static constraints = {
+		author nullable: true
     	urlName nullable: false, unique: true
     	content nullable: true
     	contentProcessed nullable: true

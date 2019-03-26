@@ -6,6 +6,7 @@ class SpudBlogBootStrap {
 		JSON.registerObjectMarshaller(SpudPost) {
 			def output = [:]
 			output.id              = it.id
+			output.author          = it.author
 			output.title           = it.title
 			output.urlName         = it.urlName
 			output.content         = it.render()
