@@ -1,5 +1,12 @@
 <fieldset>
 	<div class="form-group">
+		<label for="post.title" style="display:none;">Author</label>
+		<div class="col-sm-12">
+			<g:textField name="post.author" class="full-width form-control" placeholder="Enter author name here" value="${post?.author}"/>
+		</div>
+
+	</div>
+	<div class="form-group">
 		<label for="post.title" style="display:none;">Name</label>
 		<div class="col-sm-12">
 			<g:textField name="post.title" class="full-width form-control" placeholder="Enter title here" value="${post?.title}" autofocus="true"/>
